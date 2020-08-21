@@ -4,7 +4,7 @@ module adiff
 
 using LinearAlgebra
 import Base: length, getindex, copy
-import Base: +, -, *, /, ^, abs, sqrt, log, zero, sin, cos
+import Base: +, -, *, /, ^, abs, sqrt, log, exp, zero, sin, cos
 import LinearAlgebra: norm, dot, svd
 
 #  macros 
@@ -96,6 +96,7 @@ S = Union{Int64, Float64}
 @inline /(x::D1, y::D1)    = x*(1/y)
 @inline ^(x::D1, n::S)     = D1(x.v^n, (n*x.v^(n-1))*x.g)
 @inline log(x::D1)         = D1(log(x.v),  x.g/x.v)
+@inline exp(x::D2)         = D2(exp(x.v), exp(x.v)*x.g)
 @inline sin(x::D1)         = D1(sin(x.v),  cos(x.v)*x.g)
 @inline cos(x::D1)         = D1(cos(x.v), -sin(x.v)*x.g)
 @inline sqrt(x::D1)        = x^0.5
@@ -131,6 +132,7 @@ S = Union{Int64, Float64}
 @inline /(x::D2, y::D2)    = x*(1/y)
 @inline ^(x::D2, n::S)     = D2(x.v^n, (n*x.v^(n-1))*x.g, (n*(n-1)*x.v^(n-2))*(x.g*x.g)+(n*x.v^(n-1))*x.h)
 @inline log(x::D2)         = D2(log(x.v),  x.g/x.v,      -(x.g*x.g)/x.v^2 + x.h/x.v) 
+@inline exp(x::D2)         = D2(exp(x.v), exp(x.v)*x.g, exp(x.v)*(x.g*x.g) + exp(x.v)*x.h)
 @inline sin(x::D2)         = D2(sin(x.v),  cos(x.v)*x.g, -sin(x.v)*(x.g*x.g) + cos(x.v)*x.h) 
 @inline cos(x::D2)         = D2(cos(x.v), -sin(x.v)*x.g, -cos(x.v)*(x.g*x.g) - sin(x.v)*x.h) 
 @inline sqrt(x::D2)        = x^0.5
