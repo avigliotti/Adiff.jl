@@ -1,0 +1,7 @@
+name = "adiff"
+uuid = "27f7cb71-feaf-432a-86ca-8731dc5cf332"
+authors = ["andrea <andrea.vigliotti@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
