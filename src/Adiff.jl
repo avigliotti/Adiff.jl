@@ -102,7 +102,7 @@ S = Union{Int64, Float64}
 @inline sqrt(x::D1)        = x^0.5
 @inline abs(x::D1)         = x.v ≥ 0 ? x : -x
 @inline dot(x::Array{D1}, y::Array{D1}) = sum(x.*y)
-@inline norm(x::Array{adiff.D1}) = sqrt(dot(x,x))
+@inline norm(x::Array{D1}) = sqrt(dot(x,x))
 # data retrieving methods
 @inline D1eval(f, x)           = f(D1(x))
 @inline Real(x::D1)            = x.v
@@ -138,7 +138,7 @@ S = Union{Int64, Float64}
 @inline sqrt(x::D2)        = x^0.5
 @inline abs(x::D2)         = x.v ≥ 0 ? x : -x
 @inline dot(x::Array{D2}, y::Array{D2}) = sum(x.*y)
-@inline norm(x::Array{adiff.D2{N,M}} where {N,M}) = sqrt(dot(x,x))
+@inline norm(x::Array{D2{N,M}} where {N,M}) = sqrt(dot(x,x))
 # data retrieving methods
 @inline D2eval(f::F, x::T) where {F,T} = f(D2(x))
 @inline Real(x::D2)                    = x.v
