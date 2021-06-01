@@ -1,6 +1,6 @@
 __precompile__()
 
-module adiff
+module Adiff
 
 using LinearAlgebra
 import Base: length, getindex, copy
