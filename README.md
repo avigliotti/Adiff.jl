@@ -1,2 +1,2 @@
 # Adiff
-A simple forward automatic differentiation module
+A simple forward automatic differentiation package
